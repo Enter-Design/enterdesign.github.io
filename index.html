@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Council of Canadians with Disabilities — Equality. Rights. Inclusion.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+  /* ==============================
+     DESIGN TOKENS
+  ============================== */
+  :root {
+    --red:        #C8102E;
+    --red-dark:   #9B0C23;
+    --red-light:  #F9E8EB;
+    --black:      #0D0D0D;
+    --ink:        #1A1A1A;
+    --stone:      #3D3D3D;
+    --mist:       #F4F4F4;
+    --white:      #FFFFFF;
+    --border:     #D0D0D0;
+    --focus:      #C8102E;
+
+    --font:       'Atkinson Hyperlegible', Georgia, serif;
+
+    --text-xs:    0.8125rem;   /* 13px */
+    --text-sm:    0.9375rem;   /* 15px */
+    --text-base:  1.0625rem;   /* 17px */
+    --text-md:    1.1875rem;   /* 19px */
+    --text-lg:    1.375rem;    /* 22px */
+    --text-xl:    1.75rem;     /* 28px */
+    --text-2xl:   2.25rem;     /* 36px */
+    --text-3xl:   3rem;        /* 48px */
+    --text-4xl:   3.875rem;    /* 62px */
+
+    --space-1:  0.25rem;
+    --space-2:  0.5rem;
+    --space-3:  0.75rem;
+    --space-4:  1rem;
+    --space-5:  1.25rem;
+    --space-6:  1.5rem;
+    --space-8:  2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+
+    --max-w:    72rem;
+    --content-w: 54rem;
+    --radius:   2px;
+    --transition: 160ms ease;
+  }
+
+  /* ==============================
+     RESET & BASE
+  ============================== */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  ul, ol { padding-left: var(--space-6); }
+  a { color: var(--red); }
+  a:hover { color: var(--red-dark); }
+
+  /* ==============================
+     FOCUS STYLES — keyboard-first
+  ============================== */
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: var(--radius);
+  }
+
+  /* ==============================
+     SKIP LINK
+  ============================== */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-4);
+    background: var(--black);
+    color: var(--white);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: var(--radius);
+    transition: top var(--transition);
+  }
+  .skip-link:focus {
+    top: var(--space-4);
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+  }
+
+  /* ==============================
+     LAYOUT UTILITIES
+  ============================== */
+  .container {
+    max-width: var(--max-w);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+  .container--narrow {
+    max-width: var(--content-w);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* ==============================
+     ACCESSIBILITY TOOLBAR
+  ============================== */
+  .a11y-bar {
+    background: var(--black);
+    color: var(--white);
+    padding: var(--space-2) 0;
+    font-size: var(--text-xs);
+    border-bottom: 1px solid #333;
+  }
+  .a11y-bar__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .a11y-bar__label {
+    color: #aaa;
+    font-size: var(--text-xs);
+    margin-right: var(--space-2);
+  }
+  .a11y-btn {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid #555;
+    padding: var(--space-1) var(--space-3);
+    font-family: var(--font);
+    font-size: var(--text-xs);
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: background var(--transition), border-color var(--transition);
+    letter-spacing: 0.03em;
+  }
+  .a11y-btn:hover, .a11y-btn[aria-pressed="true"] {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+  }
+  .a11y-btn:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+  }
+  .a11y-bar__sep {
+    color: #555;
+    user-select: none;
+  }
+
+  /* ==============================
+     SITE HEADER
+  ============================== */
+  .site-header {
+    background: var(--white);
+    border-bottom: 3px solid var(--red);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    height: 5rem;
+  }
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .site-logo__mark {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--red);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .site-logo__mark svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .site-logo__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .site-logo__abbr {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .site-logo__name {
+    font-size: var(--text-xs);
+    color: var(--stone);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .site-logo:hover .site-logo__abbr { color: var(--red); }
+
+  /* ==============================
+     MAIN NAV
+  ============================== */
+  .site-nav { display: flex; align-items: center; gap: 0; }
+  .site-nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .site-nav__item { position: relative; }
+  .site-nav__link {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    border-bottom: 3px solid transparent;
+    transition: color var(--transition), border-color var(--transition);
+    white-space: nowrap;
+  }
+  .site-nav__link:hover,
+  .site-nav__link[aria-current="page"] {
+    color: var(--red);
+    border-bottom-color: var(--red);
+  }
+  .site-nav__link--has-sub::after {
+    content: ' ▾';
+    font-size: 0.7em;
+  }
+
+  /* Dropdown */
+  .site-nav__dropdown {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    min-width: 14rem;
+    padding: var(--space-2) 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity var(--transition), transform var(--transition);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    z-index: 200;
+  }
+  .site-nav__item:hover .site-nav__dropdown,
+  .site-nav__item:focus-within .site-nav__dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .site-nav__dropdown-link {
+    display: block;
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background var(--transition), color var(--transition);
+    border-left: 3px solid transparent;
+  }
+  .site-nav__dropdown-link:hover {
+    background: var(--mist);
+    color: var(--red);
+    border-left-color: var(--red);
+  }
+
+  /* Language + Search */
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .lang-btn {
+    font-family: var(--font);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--ink);
+    background: transparent;
+    border: 1.5px solid var(--border);
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    border-radius: var(--radius);
+    letter-spacing: 0.04em;
+    transition: all var(--transition);
+  }
+  .lang-btn:hover { border-color: var(--red); color: var(--red); }
+
+  .search-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--ink);
+    padding: var(--space-2);
+    border-radius: var(--radius);
+    transition: color var(--transition);
+    display: flex;
+    align-items: center;
+  }
+  .search-btn:hover { color: var(--red); }
+  .search-btn svg { width: 1.25rem; height: 1.25rem; }
+
+  /* Mobile menu button */
+  .menu-btn {
+    display: none;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--ink);
+    gap: var(--space-2);
+    align-items: center;
+  }
+  .menu-btn svg { width: 1.1rem; height: 1.1rem; }
+
+  /* ==============================
+     HERO
+  ============================== */
+  .hero {
+    background-color: #0d0d0d;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 680'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23181018'/%3E%3Cstop offset='60%25' stop-color='%231a0a10'/%3E%3Cstop offset='100%25' stop-color='%230d0d0d'/%3E%3C/linearGradient%3E%3ClinearGradient id='redglow' x1='1' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23c8102e' stop-opacity='0.22'/%3E%3Cstop offset='100%25' stop-color='%23c8102e' stop-opacity='0'/%3E%3C/linearGradient%3E%3ClinearGradient id='floor' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23181818'/%3E%3Cstop offset='100%25' stop-color='%230d0d0d'/%3E%3C/linearGradient%3E%3Cfilter id='blur1'%3E%3CfeGaussianBlur stdDeviation='2'/%3E%3C/filter%3E%3Cfilter id='blur2'%3E%3CfeGaussianBlur stdDeviation='6'/%3E%3C/filter%3E%3C/defs%3E%3C!-- Background --%3E%3Crect width='1400' height='680' fill='url(%23sky)'/%3E%3C!-- Red ambient glow top-right --%3E%3Cellipse cx='1150' cy='80' rx='500' ry='300' fill='%23c8102e' opacity='0.10' filter='url(%23blur2)'/%3E%3C!-- Architecture: tall pillars/columns --%3E%3Crect x='820' y='60' width='28' height='620' fill='%23222' opacity='0.9'/%3E%3Crect x='900' y='100' width='22' height='580' fill='%231e1e1e' opacity='0.85'/%3E%3Crect x='970' y='80' width='26' height='600' fill='%23252525' opacity='0.9'/%3E%3Crect x='1050' y='120' width='20' height='560' fill='%231a1a1a' opacity='0.8'/%3E%3Crect x='1110' y='60' width='30' height='620' fill='%23222' opacity='0.9'/%3E%3Crect x='1200' y='90' width='24' height='590' fill='%231e1e1e' opacity='0.85'/%3E%3Crect x='1270' y='70' width='28' height='610' fill='%23242424' opacity='0.9'/%3E%3Crect x='1340' y='110' width='22' height='570' fill='%231a1a1a' opacity='0.8'/%3E%3C!-- Archway / curved top --%3E%3Cellipse cx='1000' cy='60' rx='420' ry='80' fill='none' stroke='%23333' stroke-width='2' opacity='0.5'/%3E%3Cellipse cx='1100' cy='40' rx='380' ry='70' fill='none' stroke='%23c8102e' stroke-width='1' opacity='0.18'/%3E%3C!-- Horizontal architectural band --%3E%3Crect x='750' y='200' width='700' height='6' fill='%23c8102e' opacity='0.15'/%3E%3Crect x='750' y='208' width='700' height='2' fill='%23333' opacity='0.5'/%3E%3C!-- Floor --%3E%3Crect x='0' y='560' width='1400' height='120' fill='url(%23floor)'/%3E%3C!-- Floor reflection line --%3E%3Crect x='0' y='558' width='1400' height='2' fill='%23c8102e' opacity='0.12'/%3E%3C!-- People silhouettes - group right side, various heights/stances --%3E%3C!-- Person 1: standing, gesturing --%3E%3Cg opacity='0.72' filter='url(%23blur1)'%3E%3Ccircle cx='870' cy='340' r='22' fill='%23111'/%3E%3Crect x='848' y='365' width='44' height='100' rx='6' fill='%23111'/%3E%3Crect x='826' y='375' width='22' height='12' rx='4' fill='%23111' transform='rotate(-20 826 375)'/%3E%3Crect x='894' y='380' width='20' height='10' rx='4' fill='%23111' transform='rotate(30 894 380)'/%3E%3Crect x='854' y='468' width='16' height='92' rx='4' fill='%23111'/%3E%3Crect x='874' y='468' width='16' height='92' rx='4' fill='%23111'/%3E%3C/g%3E%3C!-- Person 2: seated / shorter profile --%3E%3Cg opacity='0.65' filter='url(%23blur1)'%3E%3Ccircle cx='950' cy='370' r='19' fill='%23131313'/%3E%3Crect x='931' y='392' width='38' height='80' rx='5' fill='%23131313'/%3E%3Crect x='915' y='402' width='18' height='10' rx='4' fill='%23131313'/%3E%3Crect x='969' y='398' width='20' height='10' rx='4' fill='%23131313' transform='rotate(15 969 398)'/%3E%3Crect x='937' y='472' width='14' height='88' rx='4' fill='%23131313'/%3E%3Crect x='955' y='472' width='14' height='88' rx='4' fill='%23131313'/%3E%3C/g%3E%3C!-- Person 3: taller, standing --%3E%3Cg opacity='0.78' filter='url(%23blur1)'%3E%3Ccircle cx='1040' cy='310' r='25' fill='%230e0e0e'/%3E%3Crect x='1015' y='337' width='50' height='120' rx='7' fill='%230e0e0e'/%3E%3Crect x='990' y='348' width='25' height='13' rx='4' fill='%230e0e0e' transform='rotate(-25 990 348)'/%3E%3Crect x='1065' y='355' width='24' height='12' rx='4' fill='%230e0e0e' transform='rotate(20 1065 355)'/%3E%3Crect x='1022' y='460' width='17' height='100' rx='5' fill='%230e0e0e'/%3E%3Crect x='1043' y='460' width='17' height='100' rx='5' fill='%230e0e0e'/%3E%3C/g%3E%3C!-- Person 4: wheelchair user --%3E%3Cg opacity='0.70' filter='url(%23blur1)'%3E%3Ccircle cx='1145' cy='375' r='20' fill='%23121212'/%3E%3Crect x='1125' y='398' width='40' height='60' rx='5' fill='%23121212'/%3E%3C!-- wheelchair --%3E%3Ccircle cx='1115' cy='475' r='22' fill='none' stroke='%23121212' stroke-width='6'/%3E%3Ccircle cx='1175' cy='475' r='22' fill='none' stroke='%23121212' stroke-width='6'/%3E%3Crect x='1093' y='455' width='100' height='10' rx='4' fill='%23121212'/%3E%3Crect x='1105' y='430' width='10' height='35' rx='3' fill='%23121212'/%3E%3Crect x='1093' y='430' width='70' height='8' rx='3' fill='%23121212'/%3E%3C/g%3E%3C!-- Person 5: standing, right --%3E%3Cg opacity='0.68' filter='url(%23blur1)'%3E%3Ccircle cx='1250' cy='330' r='23' fill='%23101010'/%3E%3Crect x='1228' y='356' width='46' height='110' rx='6' fill='%23101010'/%3E%3Crect x='1205' y='368' width='23' height='11' rx='4' fill='%23101010' transform='rotate(-18 1205 368)'/%3E%3Crect x='1274' y='372' width='22' height='11' rx='4' fill='%23101010' transform='rotate(22 1274 372)'/%3E%3Crect x='1235' y='468' width='15' height='95' rx='4' fill='%23101010'/%3E%3Crect x='1255' y='468' width='15' height='95' rx='4' fill='%23101010'/%3E%3C/g%3E%3C!-- Podium / lectern --%3E%3Crect x='1020' y='460' width='80' height='100' rx='3' fill='%23191919' opacity='0.9'/%3E%3Crect x='1030' y='455' width='60' height='8' rx='2' fill='%23222' opacity='0.9'/%3E%3C!-- Red accent line on podium --%3E%3Crect x='1020' y='460' width='4' height='100' fill='%23c8102e' opacity='0.6'/%3E%3C!-- Window / light source upper right --%3E%3Crect x='1180' y='120' width='160' height='220' rx='4' fill='%23c8102e' opacity='0.04'/%3E%3Crect x='1182' y='122' width='156' height='216' fill='none' stroke='%23c8102e' stroke-width='1' opacity='0.1'/%3E%3C!-- Subtle grid texture overlay --%3E%3Cpath d='M0 0 L1400 0' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3Cpath d='M0 80 L1400 80' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3Cpath d='M0 160 L1400 160' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3Cpath d='M0 240 L1400 240' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3Cpath d='M0 320 L1400 320' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3Cpath d='M0 400 L1400 400' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3Cpath d='M0 480 L1400 480' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3Cpath d='M0 560 L1400 560' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3C!-- Red glow overlay --%3E%3Crect width='1400' height='680' fill='url(%23redglow)'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: var(--white);
+    padding: var(--space-24) 0 var(--space-20);
+    border-bottom: 4px solid var(--red);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Layered overlay: dark base + red tint on one side */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        105deg,
+        rgba(10, 10, 10, 0.88) 0%,
+        rgba(10, 10, 10, 0.82) 50%,
+        rgba(140, 8, 24, 0.55) 100%
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Subtle red rule on the far right */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--red);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+  }
+  .hero__kicker {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: var(--space-5);
+    border-left: 3px solid var(--red);
+    padding-left: var(--space-3);
+  }
+  .hero__title {
+    font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    max-width: 20ch;
+    margin-bottom: var(--space-6);
+  }
+  .hero__title em {
+    font-style: normal;
+    color: var(--red);
+  }
+  .hero__body {
+    font-size: var(--text-md);
+    line-height: 1.7;
+    color: rgba(255,255,255,0.9);
+    max-width: 52ch;
+    margin-bottom: var(--space-10);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero__credit {
+    position: absolute;
+    bottom: var(--space-3);
+    right: var(--space-5);
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.04em;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font);
+    font-size: var(--text-base);
+    font-weight: 700;
+    text-decoration: none;
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius);
+    border: 2px solid transparent;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+    line-height: 1;
+  }
+  .btn:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+  }
+  .btn--primary {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+  .btn--primary:hover {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    color: var(--white);
+  }
+  .btn--outline-white {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255,255,255,0.5);
+  }
+  .btn--outline-white:hover {
+    border-color: var(--white);
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+  .btn--outline {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--border);
+  }
+  .btn--outline:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+  .btn--sm {
+    font-size: var(--text-sm);
+    padding: var(--space-3) var(--space-5);
+  }
+
+  /* ==============================
+     ANNOUNCEMENT BANNER
+  ============================== */
+  .announcement {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    padding: var(--space-4) 0;
+  }
+  .announcement__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .announcement__icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--red);
+    margin-top: 1px;
+  }
+  .announcement__text {
+    flex: 1;
+    font-size: var(--text-sm);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .announcement__text strong { color: var(--red); }
+  .announcement__link {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--red);
+    white-space: nowrap;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  /* ==============================
+     SECTION LABELS
+  ============================== */
+  .section-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 4rem;
+  }
+
+  /* ==============================
+     SECTION — ABOUT / MISSION
+  ============================== */
+  .section { padding: var(--space-20) 0; }
+  .section--mist { background: var(--mist); }
+  .section--black { background: var(--black); color: var(--white); }
+  .section--red { background: var(--red); color: var(--white); }
+
+  .section__header { margin-bottom: var(--space-10); }
+  .section__title {
+    font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: var(--space-4);
+  }
+  .section--black .section__title,
+  .section--red .section__title { color: var(--white); }
+  .section__lead {
+    font-size: var(--text-md);
+    color: var(--stone);
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+  .section--black .section__lead { color: #bbb; }
+  .section--red .section__lead { color: rgba(255,255,255,0.85); }
+
+  /* Split layout */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+  .split--3-2 { grid-template-columns: 3fr 2fr; }
+  .split__text p {
+    color: var(--stone);
+    line-height: 1.75;
+    margin-bottom: var(--space-5);
+  }
+  .split__text p:last-child { margin-bottom: 0; }
+
+  .stat-stack { display: flex; flex-direction: column; gap: var(--space-6); }
+  .stat-item {
+    padding: var(--space-6);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+  }
+  .stat-item__num {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: var(--space-1);
+    letter-spacing: -0.02em;
+  }
+  .stat-item__label {
+    font-size: var(--text-sm);
+    color: var(--stone);
+    line-height: 1.4;
+  }
+
+  /* ==============================
+     ISSUE AREAS / PILLARS
+  ============================== */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .pillar {
+    background: var(--white);
+    padding: var(--space-8) var(--space-6);
+    transition: background var(--transition);
+  }
+  .pillar:hover { background: var(--mist); }
+  .pillar__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--red-light);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-5);
+    color: var(--red);
+  }
+  .pillar__icon svg { width: 1.25rem; height: 1.25rem; }
+  .pillar__title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: var(--space-3);
+    line-height: 1.3;
+  }
+  .pillar__body {
+    font-size: var(--text-sm);
+    color: var(--stone);
+    line-height: 1.65;
+    margin-bottom: var(--space-5);
+  }
+  .pillar__link {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--red);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition);
+  }
+  .pillar__link:hover { border-bottom-color: var(--red); }
+  .pillar__link::after { content: ' →'; }
+
+  /* ==============================
+     NEWS SECTION
+  ============================== */
+  .news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-6);
+  }
+  .news-card {
+    border: 1px solid var(--border);
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+  }
+  .news-card--featured { grid-row: span 2; }
+  .news-card__img {
+    aspect-ratio: 16/9;
+    background: var(--mist);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .news-card--featured .news-card__img { aspect-ratio: 4/3; }
+  .news-card__img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e8e8e8 0%, #d4d4d4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: var(--text-sm);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .news-card__body { padding: var(--space-5); flex: 1; display: flex; flex-direction: column; }
+  .news-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .news-card__tag {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    background: var(--red-light);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius);
+  }
+  .news-card__date {
+    font-size: var(--text-xs);
+    color: #888;
+  }
+  .news-card__title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: var(--space-3);
+  }
+  .news-card--featured .news-card__title { font-size: var(--text-lg); }
+  .news-card__excerpt {
+    font-size: var(--text-sm);
+    color: var(--stone);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: var(--space-5);
+  }
+  .news-card__link {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: auto;
+  }
+  .news-card__link:hover { border-bottom-color: var(--red); }
+  .news-card__link::after { content: ' →'; }
+
+  /* ==============================
+     TAKE ACTION / CTA STRIP
+  ============================== */
+  .cta-strip {
+    background: var(--red);
+    color: var(--white);
+    padding: var(--space-16) 0;
+  }
+  .cta-strip__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+  .cta-strip__text {}
+  .cta-strip__eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: var(--space-3);
+  }
+  .cta-strip__title {
+    font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .cta-strip__actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+  .btn--white {
+    background: var(--white);
+    color: var(--red);
+    border-color: var(--white);
+  }
+  .btn--white:hover {
+    background: var(--mist);
+    color: var(--red-dark);
+  }
+  .btn--white:focus-visible {
+    outline-color: var(--black);
+  }
+  .btn--ghost-white {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255,255,255,0.6);
+  }
+  .btn--ghost-white:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+  }
+
+  /* ==============================
+     PROGRAMS GRID
+  ============================== */
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+  }
+  .program-card {
+    padding: var(--space-6);
+    border: 1px solid var(--border);
+    background: var(--white);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .program-card:hover {
+    border-color: var(--red);
+    box-shadow: 0 0 0 1px var(--red);
+  }
+  .program-card__num {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-3);
+  }
+  .program-card__title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: var(--space-3);
+  }
+  .program-card__body {
+    font-size: var(--text-sm);
+    color: var(--stone);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+  }
+  .program-card__link {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition);
+  }
+  .program-card__link:hover { border-bottom-color: var(--red); }
+
+  /* ==============================
+     RESOURCES / PUBLICATIONS
+  ============================== */
+  .resource-list { list-style: none; padding: 0; }
+  .resource-item {
+    border-bottom: 1px solid var(--border);
+    padding: var(--space-5) 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+  .resource-item:last-child { border-bottom: none; }
+  .resource-item__icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--mist);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    color: var(--stone);
+    margin-top: 2px;
+  }
+  .resource-item__icon svg { width: 1rem; height: 1rem; }
+  .resource-item__meta { flex: 1; }
+  .resource-item__type {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: var(--space-1);
+  }
+  .resource-item__title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--red);
+    text-decoration: none;
+    line-height: 1.3;
+    margin-bottom: var(--space-1);
+    display: block;
+  }
+  .resource-item__title:hover { text-decoration: underline; }
+  .resource-item__date { font-size: var(--text-xs); color: #888; }
+  .resource-item__action {
+    flex-shrink: 0;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--stone);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius);
+    transition: all var(--transition);
+    white-space: nowrap;
+    align-self: center;
+  }
+  .resource-item__action:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* ==============================
+     CONTACT + MEMBERSHIP
+  ============================== */
+  .two-col-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+  .info-card {
+    padding: var(--space-8);
+    border: 1px solid var(--border);
+    background: var(--white);
+  }
+  .info-card--dark {
+    background: var(--black);
+    border-color: #333;
+    color: var(--white);
+  }
+  .info-card__title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: var(--space-3);
+    line-height: 1.2;
+  }
+  .info-card--dark .info-card__title { color: var(--white); }
+  .info-card__body {
+    font-size: var(--text-sm);
+    color: var(--stone);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+  }
+  .info-card--dark .info-card__body { color: #aaa; }
+  .contact-details { list-style: none; padding: 0; margin-bottom: var(--space-6); }
+  .contact-details li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--stone);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-details li:last-child { border-bottom: none; }
+  .contact-details strong { color: var(--ink); min-width: 3.5rem; }
+
+  /* ==============================
+     FOOTER
+  ============================== */
+  .site-footer {
+    background: var(--black);
+    color: var(--white);
+    padding-top: var(--space-16);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-10);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .footer-brand__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+    text-decoration: none;
+    color: var(--white);
+  }
+  .footer-brand__logo-mark {
+    width: 2rem;
+    height: 2rem;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    flex-shrink: 0;
+  }
+  .footer-brand__abbr { font-size: var(--text-md); font-weight: 700; }
+  .footer-brand__tagline {
+    font-size: var(--text-sm);
+    color: #888;
+    line-height: 1.65;
+    margin-bottom: var(--space-6);
+    max-width: 30ch;
+  }
+  .footer-social { display: flex; gap: var(--space-3); }
+  .social-link {
+    width: 2.25rem; height: 2.25rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    color: #888;
+    text-decoration: none;
+    transition: all var(--transition);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .social-link:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+
+  .footer-col__title {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: var(--space-5);
+    border-bottom: 1px solid #222;
+    padding-bottom: var(--space-3);
+  }
+  .footer-col__list { list-style: none; padding: 0; }
+  .footer-col__list li { margin-bottom: var(--space-3); }
+  .footer-col__link {
+    font-size: var(--text-sm);
+    color: #aaa;
+    text-decoration: none;
+    transition: color var(--transition);
+    line-height: 1.4;
+  }
+  .footer-col__link:hover { color: var(--white); }
+
+  .footer-bottom {
+    padding: var(--space-6) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .footer-bottom__copy {
+    font-size: var(--text-xs);
+    color: #555;
+    line-height: 1.6;
+  }
+  .footer-bottom__copy a { color: #777; }
+  .footer-bottom__links { display: flex; gap: var(--space-5); }
+  .footer-bottom__links a {
+    font-size: var(--text-xs);
+    color: #555;
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .footer-bottom__links a:hover { color: var(--white); }
+
+  /* ==============================
+     HIGH CONTRAST MODE
+  ============================== */
+  body.high-contrast {
+    --red: #ff0000;
+    --red-dark: #cc0000;
+    --red-light: #fff0f0;
+    --ink: #000000;
+    --stone: #000000;
+    --mist: #ffffff;
+    --white: #ffffff;
+    --black: #000000;
+    --border: #000000;
+  }
+  body.high-contrast .site-header { border-bottom-width: 4px; }
+  body.high-contrast .site-nav__link { border-bottom-width: 4px; }
+  body.high-contrast .pillar:hover { background: #fff8f8; }
+
+  /* ==============================
+     TEXT SIZE OVERRIDES
+  ============================== */
+  body.text-lg {
+    font-size: 1.2rem;
+  }
+  body.text-xl {
+    font-size: 1.4rem;
+  }
+
+  /* ==============================
+     RESPONSIVE
+  ============================== */
+  @media (max-width: 1100px) {
+    .programs-grid { grid-template-columns: repeat(2, 1fr); }
+    .news-grid { grid-template-columns: 1fr 1fr; }
+    .news-card--featured { grid-column: span 2; grid-row: span 1; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  }
+
+  @media (max-width: 860px) {
+    .pillars { grid-template-columns: 1fr 1fr; }
+    .split, .split--3-2, .two-col-cards { grid-template-columns: 1fr; }
+    .site-nav { display: none; }
+    .menu-btn { display: flex; }
+    .hero { padding: var(--space-16) 0; }
+  }
+
+  @media (max-width: 640px) {
+    .pillars { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .news-card--featured { grid-column: span 1; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .cta-strip__inner { flex-direction: column; align-items: flex-start; }
+    .hero__actions { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ==============================
+     PRINT
+  ============================== */
+  @media print {
+    .a11y-bar, .site-header, .cta-strip, .site-footer { display: none; }
+    body { font-size: 12pt; color: #000; background: #fff; }
+    a { color: #000; text-decoration: underline; }
+    h1, h2, h3 { page-break-after: avoid; }
+    .hero { background: #fff; color: #000; border: 2px solid #000; padding: 1rem; }
+    .hero__title { color: #000; }
+    .hero__body { color: #333; }
+  }
+
+  /* ==============================
+     REDUCED MOTION
+  ============================== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SKIP NAVIGATION -->
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ACCESSIBILITY TOOLBAR -->
+<div class="a11y-bar" role="toolbar" aria-label="Accessibility options">
+  <div class="container">
+    <div class="a11y-bar__inner">
+      <span class="a11y-bar__label" id="a11y-label">Accessibility:</span>
+      <button class="a11y-btn" id="btn-text-lg" aria-pressed="false" onclick="setTextSize('lg')">A+ Text</button>
+      <button class="a11y-btn" id="btn-text-xl" aria-pressed="false" onclick="setTextSize('xl')">A++ Text</button>
+      <button class="a11y-btn" id="btn-text-reset" onclick="setTextSize('normal')">Reset</button>
+      <span class="a11y-bar__sep" aria-hidden="true">|</span>
+      <button class="a11y-btn" id="btn-contrast" aria-pressed="false" onclick="toggleContrast()">High Contrast</button>
+      <span class="a11y-bar__sep" aria-hidden="true">|</span>
+      <button class="a11y-btn" onclick="window.print()">Print Page</button>
+    </div>
+  </div>
+</div>
+
+<!-- SITE HEADER -->
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="site-header__inner">
+
+      <!-- Logo -->
+      <a href="#" class="site-logo" aria-label="Council of Canadians with Disabilities — home">
+        <div class="site-logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Accessibility person icon (simplified) -->
+            <circle cx="12" cy="5" r="2.5" fill="white"/>
+            <path d="M9 10h6M10 10v8M14 10v5M8 15l2-2M16 15l-2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="site-logo__text">
+          <span class="site-logo__abbr">CCD</span>
+          <span class="site-logo__name">Council of Canadians with Disabilities</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__list" role="list">
+          <li class="site-nav__item">
+            <a href="#" class="site-nav__link" aria-current="page">Home</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="#" class="site-nav__link site-nav__link--has-sub" aria-haspopup="true" aria-expanded="false">Issues</a>
+            <ul class="site-nav__dropdown" role="list" aria-label="Issues submenu">
+              <li><a href="#" class="site-nav__dropdown-link">Accessible Canada Act</a></li>
+              <li><a href="#" class="site-nav__dropdown-link">Poverty & Income Support</a></li>
+              <li><a href="#" class="site-nav__dropdown-link">Legal Capacity</a></li>
+              <li><a href="#" class="site-nav__dropdown-link">Employment</a></li>
+              <li><a href="#" class="site-nav__dropdown-link">Healthcare Access</a></li>
+              <li><a href="#" class="site-nav__dropdown-link">View All Issues</a></li>
+            </ul>
+          </li>
+          <li class="site-nav__item">
+            <a href="#" class="site-nav__link">Publications</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="#" class="site-nav__link">News</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="#" class="site-nav__link">About CCD</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="#" class="site-nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Actions -->
+      <div class="site-header__actions">
+        <button class="lang-btn" lang="fr" aria-label="Changer la langue en français">FR</button>
+        <button class="search-btn" aria-label="Search the site">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+        <button class="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          Menu
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="main-content" tabindex="-1">
+
+  <!-- ANNOUNCEMENT BANNER -->
+  <div class="announcement" role="region" aria-label="Important announcement">
+    <div class="container">
+      <div class="announcement__inner">
+        <svg class="announcement__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p class="announcement__text">
+          <strong>Consultation open:</strong> CCD is seeking input on the proposed regulations under the Accessible Canada Act. Submissions accepted until April 30, 2026.
+        </p>
+        <a href="#" class="announcement__link">Submit Your Comments →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container">
+      <div class="hero__inner">
+        <p class="hero__kicker" aria-hidden="true">Canada's National Cross-Disability Organization</p>
+        <h1 class="hero__title" id="hero-heading">
+          Equality, Rights, and Inclusion <em>for All Disabled Canadians.</em>
+        </h1>
+        <p class="hero__body">
+          The Council of Canadians with Disabilities advocates for a Canada where people with disabilities participate fully and equally in all aspects of life. We work with disabled people, by disabled people.
+        </p>
+        <div class="hero__actions">
+          <a href="#" class="btn btn--primary">Our Work & Issues</a>
+          <a href="#" class="btn btn--outline-white">Become a Member</a>
+        </div>
+      </div>
+      <!-- Photo credit: accessible, low-visibility -->
+      <p class="hero__credit" aria-hidden="true">Photo: Unsplash</p>
+    </div>
+  </section>
+
+  <!-- MISSION / ABOUT SPLIT -->
+  <section class="section" aria-labelledby="mission-heading">
+    <div class="container">
+      <div class="split split--3-2">
+        <div class="split__text">
+          <p class="section-label" aria-hidden="true">Who We Are</p>
+          <h2 class="section__title" id="mission-heading">A voice driven by disabled people, for disabled people.</h2>
+          <p>CCD is a human rights organization that has advocated for the full and equal participation of Canadians with disabilities since 1976. Our membership comprises national, provincial, and territorial organizations of persons with disabilities.</p>
+          <p>We believe that people with disabilities are the foremost experts on their own lives. All of our policy work, submissions, and advocacy positions are shaped by the people we represent.</p>
+          <p>From the courtroom to Parliament Hill, from international human rights bodies to local communities — CCD fights for systemic change on every level.</p>
+          <div style="margin-top: var(--space-8);">
+            <a href="#" class="btn btn--outline">Learn About CCD</a>
+          </div>
+        </div>
+        <aside aria-label="Key statistics">
+          <div class="stat-stack">
+            <div class="stat-item">
+              <div class="stat-item__num">27%</div>
+              <div class="stat-item__label">of Canadians aged 15 and over live with a disability</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__num">1976</div>
+              <div class="stat-item__label">Year CCD was founded — nearly five decades of advocacy</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__num">50+</div>
+              <div class="stat-item__label">Member organizations representing disabled Canadians</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ISSUE PILLARS -->
+  <section class="section section--mist" aria-labelledby="issues-heading">
+    <div class="container">
+      <div class="section__header">
+        <p class="section-label" aria-hidden="true">Priority Areas</p>
+        <h2 class="section__title" id="issues-heading">The issues we work on every day.</h2>
+        <p class="section__lead">CCD focuses on systemic barriers that affect disabled Canadians across every area of life — from income security to legal rights to healthcare access.</p>
+      </div>
+      <div class="pillars" role="list">
+
+        <article class="pillar" role="listitem">
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="pillar__title">Accessible Canada Act</h3>
+          <p class="pillar__body">Monitoring implementation of Canada's landmark accessibility legislation and pushing for strong, enforceable standards.</p>
+          <a href="#" class="pillar__link">Read our positions</a>
+        </article>
+
+        <article class="pillar" role="listitem">
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 class="pillar__title">Income Support & Poverty</h3>
+          <p class="pillar__body">Fighting the economic marginalization of disabled people through the Canada Disability Benefit and income support reform.</p>
+          <a href="#" class="pillar__link">Read our positions</a>
+        </article>
+
+        <article class="pillar" role="listitem">
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          </div>
+          <h3 class="pillar__title">Legal Capacity & Rights</h3>
+          <p class="pillar__body">Advancing the rights of people with disabilities to make their own decisions, free from substituted decision-making.</p>
+          <a href="#" class="pillar__link">Read our positions</a>
+        </article>
+
+        <article class="pillar" role="listitem">
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 class="pillar__title">Employment</h3>
+          <p class="pillar__body">Removing barriers to meaningful employment through policy, legislation, and employer accountability frameworks.</p>
+          <a href="#" class="pillar__link">Read our positions</a>
+        </article>
+
+        <article class="pillar" role="listitem">
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3 class="pillar__title">Healthcare Access</h3>
+          <p class="pillar__body">Ensuring disabled Canadians receive appropriate, non-discriminatory healthcare across all provinces and territories.</p>
+          <a href="#" class="pillar__link">Read our positions</a>
+        </article>
+
+        <article class="pillar" role="listitem">
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><globe/><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+          </div>
+          <h3 class="pillar__title">International Human Rights</h3>
+          <p class="pillar__body">Engaging with the UN Convention on the Rights of Persons with Disabilities to hold Canada accountable globally.</p>
+          <a href="#" class="pillar__link">Read our positions</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip" role="complementary" aria-label="Take action">
+    <div class="container">
+      <div class="cta-strip__inner">
+        <div class="cta-strip__text">
+          <p class="cta-strip__eyebrow">Take Action</p>
+          <h2 class="cta-strip__title">Help us build a more accessible Canada.</h2>
+        </div>
+        <div class="cta-strip__actions">
+          <a href="#" class="btn btn--white">Join CCD</a>
+          <a href="#" class="btn btn--ghost-white">Donate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMS -->
+  <section class="section" aria-labelledby="programs-heading">
+    <div class="container">
+      <div class="section__header">
+        <p class="section-label" aria-hidden="true">Programs & Initiatives</p>
+        <h2 class="section__title" id="programs-heading">How we advance disability rights.</h2>
+      </div>
+      <div class="programs-grid">
+
+        <article class="program-card">
+          <p class="program-card__num">01</p>
+          <h3 class="program-card__title">Policy Development & Submissions</h3>
+          <p class="program-card__body">Evidence-based briefs and formal submissions to government, regulators, and parliamentary committees.</p>
+          <a href="#" class="program-card__link">Explore →</a>
+        </article>
+
+        <article class="program-card">
+          <p class="program-card__num">02</p>
+          <h3 class="program-card__title">Legal Intervention Program</h3>
+          <p class="program-card__body">Strategic litigation and court interventions that shape the law as it affects disabled Canadians.</p>
+          <a href="#" class="program-card__link">Explore →</a>
+        </article>
+
+        <article class="program-card">
+          <p class="program-card__num">03</p>
+          <h3 class="program-card__title">Consultation & Engagement</h3>
+          <p class="program-card__body">Meaningful consultation processes that ensure the disability community's voice reaches decision-makers.</p>
+          <a href="#" class="program-card__link">Explore →</a>
+        </article>
+
+        <article class="program-card">
+          <p class="program-card__num">04</p>
+          <h3 class="program-card__title">Monitoring & Accountability</h3>
+          <p class="program-card__body">Tracking government commitments and measuring outcomes for Canadians with disabilities.</p>
+          <a href="#" class="program-card__link">Explore →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="section section--mist" aria-labelledby="news-heading">
+    <div class="container">
+      <div class="section__header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <p class="section-label" aria-hidden="true">News & Updates</p>
+          <h2 class="section__title" id="news-heading">Latest from CCD.</h2>
+        </div>
+        <a href="#" class="btn btn--outline btn--sm">All News</a>
+      </div>
+
+      <div class="news-grid">
+
+        <article class="news-card news-card--featured">
+          <div class="news-card__img" aria-hidden="true">
+            <div class="news-card__img-placeholder">Featured Image</div>
+          </div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__tag">Statement</span>
+              <time class="news-card__date" datetime="2026-03-10">March 10, 2026</time>
+            </div>
+            <h3 class="news-card__title">CCD Responds to Federal Budget 2026: Canada Disability Benefit Funding Insufficient</h3>
+            <p class="news-card__excerpt">The Council of Canadians with Disabilities calls on the federal government to close the gap between the announced Canada Disability Benefit amounts and the real cost of disability-related expenses for low-income Canadians.</p>
+            <a href="#" class="news-card__link">Read the full statement</a>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <div class="news-card__img" aria-hidden="true">
+            <div class="news-card__img-placeholder">Image</div>
+          </div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__tag">Consultation</span>
+              <time class="news-card__date" datetime="2026-03-04">March 4, 2026</time>
+            </div>
+            <h3 class="news-card__title">CCD Calls for Robust Standards in New ACA Accessibility Regulations</h3>
+            <a href="#" class="news-card__link">Read more</a>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <div class="news-card__img" aria-hidden="true">
+            <div class="news-card__img-placeholder">Image</div>
+          </div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__tag">Legal</span>
+              <time class="news-card__date" datetime="2026-02-18">February 18, 2026</time>
+            </div>
+            <h3 class="news-card__title">Supreme Court Decision in <em>Fraser v. Canada</em>: A Step Forward for Disability Rights</h3>
+            <a href="#" class="news-card__link">Read more</a>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <div class="news-card__body" style="padding-top: var(--space-5);">
+            <div class="news-card__meta">
+              <span class="news-card__tag">Policy</span>
+              <time class="news-card__date" datetime="2026-02-07">February 7, 2026</time>
+            </div>
+            <h3 class="news-card__title">CCD Submits Brief to Senate Committee on Employment Equity Act Review</h3>
+            <a href="#" class="news-card__link">Read more</a>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <div class="news-card__body" style="padding-top: var(--space-5);">
+            <div class="news-card__meta">
+              <span class="news-card__tag">International</span>
+              <time class="news-card__date" datetime="2026-01-29">January 29, 2026</time>
+            </div>
+            <h3 class="news-card__title">CCD Report to the UN Committee on the Rights of Persons with Disabilities</h3>
+            <a href="#" class="news-card__link">Read more</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="section" aria-labelledby="publications-heading">
+    <div class="container--narrow">
+      <div class="section__header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <p class="section-label" aria-hidden="true">Resources</p>
+          <h2 class="section__title" id="publications-heading">Publications & Reports.</h2>
+        </div>
+        <a href="#" class="btn btn--outline btn--sm">All Publications</a>
+      </div>
+
+      <ul class="resource-list" aria-label="Recent publications">
+        <li class="resource-item">
+          <div class="resource-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="resource-item__meta">
+            <p class="resource-item__type">Policy Brief</p>
+            <a href="#" class="resource-item__title">Strengthening the Canada Disability Benefit: CCD Recommendations</a>
+            <p class="resource-item__date">February 2026 · PDF, 18 pages</p>
+          </div>
+          <a href="#" class="resource-item__action" aria-label="Download: Strengthening the Canada Disability Benefit report">Download PDF</a>
+        </li>
+
+        <li class="resource-item">
+          <div class="resource-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="resource-item__meta">
+            <p class="resource-item__type">Submission</p>
+            <a href="#" class="resource-item__title">CCD Submission to the Accessible Canada Act Regulatory Review</a>
+            <p class="resource-item__date">January 2026 · PDF, 32 pages</p>
+          </div>
+          <a href="#" class="resource-item__action" aria-label="Download: ACA Regulatory Review submission">Download PDF</a>
+        </li>
+
+        <li class="resource-item">
+          <div class="resource-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          </div>
+          <div class="resource-item__meta">
+            <p class="resource-item__type">Report</p>
+            <a href="#" class="resource-item__title">Poverty and Disability in Canada: A 2025 Snapshot</a>
+            <p class="resource-item__date">December 2025 · PDF, 56 pages</p>
+          </div>
+          <a href="#" class="resource-item__action" aria-label="Download: Poverty and Disability in Canada report">Download PDF</a>
+        </li>
+
+        <li class="resource-item">
+          <div class="resource-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="resource-item__meta">
+            <p class="resource-item__type">Legal Brief</p>
+            <a href="#" class="resource-item__title">Substituted Decision-Making and Legal Capacity: A Rights-Based Analysis</a>
+            <p class="resource-item__date">October 2025 · PDF, 24 pages</p>
+          </div>
+          <a href="#" class="resource-item__action" aria-label="Download: Legal Capacity analysis">Download PDF</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT + MEMBERSHIP -->
+  <section class="section section--mist" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section__header">
+        <p class="section-label" aria-hidden="true">Get Involved</p>
+        <h2 class="section__title" id="contact-heading">Connect with CCD.</h2>
+      </div>
+      <div class="two-col-cards">
+
+        <div class="info-card">
+          <h3 class="info-card__title">Contact Us</h3>
+          <p class="info-card__body">Reach our national office for media inquiries, policy questions, or organizational partnerships.</p>
+          <ul class="contact-details" aria-label="Contact information">
+            <li>
+              <strong>Phone:</strong>
+              <a href="tel:+12042879009">(204) 287-9009</a>
+            </li>
+            <li>
+              <strong>TTY:</strong>
+              <a href="tel:+12042871251">(204) 287-1251</a>
+            </li>
+            <li>
+              <strong>Email:</strong>
+              <a href="/cdn-cgi/l/email-protection#6f060109002f0c0c0b00010306010a410c0e"><span class="__cf_email__" data-cfemail="8ee7e0e8e1ceededeae1e0e2e7e0eba0edef">[email&#160;protected]</span></a>
+            </li>
+            <li>
+              <strong>Office:</strong>
+              <span>926-294 Portage Ave, Winnipeg, MB R3C 0B9</span>
+            </li>
+          </ul>
+          <a href="#" class="btn btn--primary btn--sm">Send a Message</a>
+        </div>
+
+        <div class="info-card info-card--dark">
+          <h3 class="info-card__title">Become a Member Organization</h3>
+          <p class="info-card__body">CCD membership is open to national, provincial, territorial, and local organizations of persons with disabilities. Membership amplifies the collective voice of the Canadian disability community.</p>
+          <a href="#" class="btn btn--primary btn--sm" style="margin-bottom: var(--space-3);">Apply for Membership</a>
+          <br>
+          <a href="#" class="btn btn--ghost-white btn--sm" style="margin-top: var(--space-3);">Individual Supporter</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- SITE FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="#" class="footer-brand__logo" aria-label="Council of Canadians with Disabilities — home">
+          <div class="footer-brand__logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16">
+              <circle cx="12" cy="5" r="2.5" fill="white"/>
+              <path d="M9 10h6M10 10v8M14 10v5M8 15l2-2M16 15l-2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="footer-brand__abbr">CCD</span>
+        </a>
+        <p class="footer-brand__tagline">Council of Canadians with Disabilities — working for equality, rights, and inclusion since 1976.</p>
+        <nav aria-label="Social media links">
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="CCD on Twitter / X">𝕏</a>
+            <a href="#" class="social-link" aria-label="CCD on Facebook">f</a>
+            <a href="#" class="social-link" aria-label="CCD on LinkedIn">in</a>
+            <a href="#" class="social-link" aria-label="CCD on YouTube">▶</a>
+          </div>
+        </nav>
+      </div>
+
+      <nav aria-label="Issues footer navigation">
+        <h2 class="footer-col__title">Issues</h2>
+        <ul class="footer-col__list" role="list">
+          <li><a href="#" class="footer-col__link">Accessible Canada Act</a></li>
+          <li><a href="#" class="footer-col__link">Income Support</a></li>
+          <li><a href="#" class="footer-col__link">Legal Capacity</a></li>
+          <li><a href="#" class="footer-col__link">Employment</a></li>
+          <li><a href="#" class="footer-col__link">Healthcare Access</a></li>
+          <li><a href="#" class="footer-col__link">International Rights</a></li>
+          <li><a href="#" class="footer-col__link">All Issues</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Resources footer navigation">
+        <h2 class="footer-col__title">Resources</h2>
+        <ul class="footer-col__list" role="list">
+          <li><a href="#" class="footer-col__link">Publications</a></li>
+          <li><a href="#" class="footer-col__link">Policy Briefs</a></li>
+          <li><a href="#" class="footer-col__link">Legal Decisions</a></li>
+          <li><a href="#" class="footer-col__link">News Archive</a></li>
+          <li><a href="#" class="footer-col__link">Annual Reports</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Organization footer navigation">
+        <h2 class="footer-col__title">Organization</h2>
+        <ul class="footer-col__list" role="list">
+          <li><a href="#" class="footer-col__link">About CCD</a></li>
+          <li><a href="#" class="footer-col__link">Board of Directors</a></li>
+          <li><a href="#" class="footer-col__link">Member Organizations</a></li>
+          <li><a href="#" class="footer-col__link">Become a Member</a></li>
+          <li><a href="#" class="footer-col__link">Donate</a></li>
+          <li><a href="#" class="footer-col__link">Contact</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-bottom__copy">
+        © 2026 Council of Canadians with Disabilities (CCD) · 926-294 Portage Ave, Winnipeg MB R3C 0B9 ·
+        <a href="tel:+12042879009">(204) 287-9009</a> ·
+        Charitable Registration: <abbr title="Business Number">BN</abbr> 107355835RR0001
+      </p>
+      <nav class="footer-bottom__links" aria-label="Legal and accessibility links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Accessibility Statement</a>
+        <a href="#">Disclaimer</a>
+        <a href="#" lang="fr">Français</a>
+      </nav>
+    </div>
+
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* Accessibility toolbar */
+  function setTextSize(size) {
+    document.body.classList.remove('text-lg', 'text-xl');
+    document.getElementById('btn-text-lg').setAttribute('aria-pressed', 'false');
+    document.getElementById('btn-text-xl').setAttribute('aria-pressed', 'false');
+    if (size === 'lg') {
+      document.body.classList.add('text-lg');
+      document.getElementById('btn-text-lg').setAttribute('aria-pressed', 'true');
+    } else if (size === 'xl') {
+      document.body.classList.add('text-xl');
+      document.getElementById('btn-text-xl').setAttribute('aria-pressed', 'true');
+    }
+  }
+
+  function toggleContrast() {
+    const btn = document.getElementById('btn-contrast');
+    const isOn = document.body.classList.toggle('high-contrast');
+    btn.setAttribute('aria-pressed', isOn.toString());
+  }
+
+  /* Keyboard-accessible dropdowns */
+  document.querySelectorAll('.site-nav__link--has-sub').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', (!ex
